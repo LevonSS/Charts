@@ -1,0 +1,38 @@
+.light {
+  --grid-color: #ccc;
+  --text-color: #222;
+  --tooltip-bg: #fff;
+}
+
+.dark {
+  --grid-color: #555;
+  --text-color: #ddd;
+  --tooltip-bg: #222;
+}
+
+.chartWrapper {
+  width: 100%;
+  height: 60vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 671px) and (max-width: 1300px) {
+  .chartWrapper {
+    height: 48vh;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 670px) {
+  .chartWrapper {
+    height: 44vh;
+    padding: 8px;
+  }
+}
