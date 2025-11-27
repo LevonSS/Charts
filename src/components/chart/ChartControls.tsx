@@ -9,8 +9,6 @@ interface Props {
   onToggle: (id: string) => void;
   mode: ViewMode;
   onModeChange: (m: ViewMode) => void;
-  // lineStyle: "line" | "smooth" | "area";
-  // onLineStyleChange: (v: "line" | "smooth" | "area") => void;
   lineStyle: LineStyle;
   onLineStyleChange: (v: LineStyle) => void;
 }

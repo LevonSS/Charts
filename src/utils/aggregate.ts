@@ -36,7 +36,6 @@ export function aggregateWeekly(data: NormalizedData): ChartPoint[] {
     const year = Number(yearStr);
     const week = Number(weekStr);
 
-    // --- FIXED: proper ISO week start (Monday) ---
     const simple = new Date(Date.UTC(year, 0, 1 + (week - 1) * 7));
     const dow = simple.getUTCDay();
     const ISOweekStart = new Date(simple);
@@ -67,45 +66,3 @@ export function aggregateWeekly(data: NormalizedData): ChartPoint[] {
 
   return chartData;
 }
-
-// export function aggregateWeekly(data: NormalizedData): ChartPoint[] {
-//   const weekBuckets: Record<
-//     string,
-//     Record<string, { visits: number; conversions: number }>
-//   > = {};
-
-//   for (const p of data.points) {
-//     const weekNum = getWeekNumber(p.date);
-//     const year = new Date(p.date).getFullYear();
-//     const weekKey = `${year}-W${String(weekNum).padStart(2, "0")}`;
-
-//     if (!weekBuckets[weekKey]) weekBuckets[weekKey] = {};
-//     if (!weekBuckets[weekKey][p.variationId]) {
-//       weekBuckets[weekKey][p.variationId] = { visits: 0, conversions: 0 };
-//     }
-
-//     weekBuckets[weekKey][p.variationId].visits += p.visits;
-//     weekBuckets[weekKey][p.variationId].conversions += p.conversions;
-//   }
-
-//   const chartData: ChartPoint[] = [];
-
-//   for (const [weekKey, variations] of Object.entries(weekBuckets)) {
-//     const row: ChartPoint = { date: weekKey };
-
-//     for (const variationId of data.variationIds) {
-//       const record = variations[variationId];
-//       if (!record) continue;
-
-//       const rate =
-//         record.visits === 0 ? 0 : (record.conversions / record.visits) * 100;
-//       row[`conversionRate_${variationId}`] = Number(rate.toFixed(2));
-//     }
-
-//     chartData.push(row);
-//   }
-
-//   chartData.sort((a, b) => (a.date > b.date ? 1 : -1));
-
-//   return chartData;
-// }
